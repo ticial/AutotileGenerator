@@ -2,11 +2,11 @@ tool
 extends Node2D
 
 
-export(TileSet) var tile_set setget set_tileset 
-export var create_image = false
-export var image_path = "TileSet.png"
+export(TileSet) var tile_set:TileSet setget set_tileset 
+export var create_image:= false
+export var image_path:= "TileSet.png"
 
-func set_tileset(_tile_set:TileSet):
+func set_tileset(_tile_set:TileSet) -> void:
 	tile_set = _tile_set
 	if !tile_set:
 		return
