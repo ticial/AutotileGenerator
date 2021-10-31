@@ -1,20 +1,17 @@
 tool
+class_name AutotileGenerator
 extends Node2D
 
+#signal saved_image
+#signal filesystem_scanned
 
-export(TileSet) var tile_set:TileSet setget set_tileset 
-export var create_image:= false
-export var image_path:= "TileSet.png"
+var sprites = []
+var tileset_image_offsets = []
 
-func set_tileset(_tile_set:TileSet) -> void:
-	tile_set = _tile_set
-	if !tile_set:
-		return
+func create_tileset_texture(image_path:String = '') -> Texture:
 	if !get_children():
-		return
+		return null
 	
-	var sprites = []
-	var tileset_image_offsets = []
 	var texture_size = Vector2()
 	var texture_offset = Vector2()
 	
@@ -36,18 +33,22 @@ func set_tileset(_tile_set:TileSet) -> void:
 	
 	var tileset_texture:Texture
 	
-	if create_image and image_path:
+	if image_path:
 		tileset_image.save_png(image_path)
-		if ResourceLoader.exists(image_path):
-			tileset_texture = load(image_path)
-	
-	if !tileset_texture:
+#		emit_signal("saved_image")
+		print("saved_image: ",image_path)
+	else:
 		tileset_texture = ImageTexture.new()
 		tileset_texture.create_from_image(tileset_image,2)
-	
+		
+	return tileset_texture
+
+
+func fill_tileset(tile_set:TileSet, tileset_texture:Texture = create_tileset_texture()) -> TileSet:
 	for i in range(sprites.size()):
 		create_autotile(tile_set, sprites[i].name, tileset_texture, tileset_image_offsets[i])
-
+		
+	return tile_set
 
 func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset:Vector2):
 	var tiles: Image = sprite.texture.get_data()
@@ -68,7 +69,6 @@ func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset
 			Vector2(0, half_tile_size),
 			
 			Vector2(0, tile_size * 2 + half_tile_size),
-#			Vector2(0, tile_size * 3 + half_tile_size),
 			Vector2(tile_size, tile_size * 2 + half_tile_size),
 			Vector2(tile_size, tile_size * 3 + half_tile_size),
 			Vector2(tile_size * 8, tile_size * 3 + half_tile_size),
@@ -84,7 +84,6 @@ func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset
 			Vector2(half_tile_size, half_tile_size),
 			
 			Vector2(half_tile_size, tile_size * 2 + half_tile_size),
-#			Vector2(half_tile_size, tile_size * 3 + half_tile_size),
 			Vector2(tile_size * 3 + half_tile_size, tile_size * 2 + half_tile_size),
 			Vector2(tile_size * 3 + half_tile_size, tile_size * 3 + half_tile_size),
 			Vector2(tile_size * 11 + half_tile_size, tile_size * 3 + half_tile_size),
@@ -101,7 +100,6 @@ func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset
 		],
 		Rect2(tile_size, half_tile_size, half_tile_size, half_tile_size): [
 			Vector2(0, tile_size * 3 + half_tile_size),
-#			Vector2(0, half_tile_size),
 			Vector2(0, tile_size + half_tile_size),
 			Vector2(tile_size, half_tile_size),
 			Vector2(tile_size, tile_size + half_tile_size),
@@ -122,7 +120,6 @@ func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset
 		],
 		Rect2(tile_size + half_tile_size, half_tile_size, half_tile_size, half_tile_size): [
 			Vector2(half_tile_size, tile_size * 3 + half_tile_size),
-#			Vector2(half_tile_size, half_tile_size),
 			Vector2(half_tile_size, tile_size + half_tile_size),
 			Vector2(tile_size * 3 + half_tile_size, half_tile_size),
 			Vector2(tile_size * 3 + half_tile_size, tile_size + half_tile_size),

@@ -5,8 +5,7 @@ var brush = 0
 
 func _ready():
 	$AutotileGenerator.hide()
-	$AutotileGenerator.set_tileset(TileSet.new())
-	var tile_set:TileSet = $AutotileGenerator.tile_set
+	var tile_set:TileSet = $AutotileGenerator.fill_tileset(TileSet.new())
 	$TileMap.tile_set = tile_set
 	for id in tile_set.get_tiles_ids():
 		var button = Button.new()

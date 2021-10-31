@@ -8,11 +8,25 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "AutotileGenerator",
+"language": "GDScript",
+"path": "res://addons/AutotileGenerator3x3min/AutotileGenerator.gd"
+} ]
+_global_script_class_icons={
+"AutotileGenerator": ""
+}
+
 [application]
 
 config/name="AutotileGenerator"
 run/main_scene="res://AutotileGeneratorTest.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/AutotileGenerator3x3min/plugin.cfg" )
 
 [importer_defaults]
 
