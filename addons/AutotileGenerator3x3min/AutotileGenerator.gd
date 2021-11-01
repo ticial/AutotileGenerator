@@ -68,13 +68,13 @@ var _tiles_data = {
 	Vector2(3,3): [Source.c4_1,Source.c3_2,Source.c2_3,Source.c1_4,
 		TileSet.BIND_CENTER + TileSet.BIND_LEFT + TileSet.BIND_TOP],
 	
-	Vector2(4,0): [Source.c5_1,Source.c5_2,Source.c5_3,Source.c4_4,
+	Vector2(4,0): [Source.c5_1,Source.c4_2,Source.c4_3,Source.c4_4,
 		TileSet.BIND_CENTER + TileSet.BIND_LEFT + TileSet.BIND_RIGHT + TileSet.BIND_TOP + TileSet.BIND_BOTTOM + TileSet.BIND_TOPLEFT],
 	Vector2(4,1): [Source.c2_1,Source.c2_2,Source.c4_3,Source.c5_4,
 		TileSet.BIND_CENTER + TileSet.BIND_TOP + TileSet.BIND_BOTTOM + TileSet.BIND_RIGHT + TileSet.BIND_BOTTOMRIGHT],
 	Vector2(4,2): [Source.c2_1,Source.c2_2,Source.c5_3,Source.c4_4,
 		TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_BOTTOM + TileSet.BIND_TOPRIGHT + TileSet.BIND_RIGHT],
-	Vector2(4,3): [Source.c5_1,Source.c5_2,Source.c4_3,Source.c5_4,
+	Vector2(4,3): [Source.c4_1,Source.c5_2,Source.c4_3,Source.c4_4,
 		TileSet.BIND_LEFT + TileSet.BIND_BOTTOMLEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_BOTTOM + TileSet.BIND_RIGHT],
 		
 	Vector2(5,0): [Source.c3_1,Source.c4_2,Source.c3_3,Source.c5_4,
@@ -95,13 +95,13 @@ var _tiles_data = {
 	Vector2(6,3): [Source.c5_1,Source.c3_2,Source.c4_3,Source.c3_4,
 		TileSet.BIND_TOPLEFT + TileSet.BIND_LEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_RIGHT],
 
-	Vector2(7,0): [Source.c5_1,Source.c4_2,Source.c5_3,Source.c5_4,
+	Vector2(7,0): [Source.c4_1,Source.c4_2,Source.c5_3,Source.c4_4,
 		TileSet.BIND_TOPRIGHT + TileSet.BIND_LEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_BOTTOM + TileSet.BIND_RIGHT],
 	Vector2(7,1): [Source.c4_1,Source.c5_2,Source.c2_3,Source.c2_4,
 		TileSet.BIND_LEFT + TileSet.BIND_BOTTOMLEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_BOTTOM],
 	Vector2(7,2): [Source.c5_1,Source.c4_2,Source.c2_3,Source.c2_4,
 		TileSet.BIND_TOPLEFT + TileSet.BIND_LEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_BOTTOM],
-	Vector2(7,3): [Source.c4_1,Source.c5_2,Source.c5_3,Source.c5_4,
+	Vector2(7,3): [Source.c4_1,Source.c4_2,Source.c4_3,Source.c5_4,
 		TileSet.BIND_LEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER + TileSet.BIND_BOTTOM + TileSet.BIND_RIGHT + TileSet.BIND_BOTTOMRIGHT],
 
 	Vector2(8,0): [Source.c1_1,Source.c2_2,Source.c3_3,Source.c5_4,
