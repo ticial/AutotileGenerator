@@ -1,2 +1,10 @@
 # AutotileGenerator3x3min
 Generate autotiles 3x3 min from sprites whith 5 tiles, and add to tileset. Based on https://github.com/ShatReal/3x3-min-gen
+
+<a href="https://ibb.co/jgh18CD"><img src="https://i.ibb.co/jgh18CD/help1.png" alt="help1" border="0"></a>
+<a href="https://ibb.co/fH93H1x"><img src="https://i.ibb.co/fH93H1x/help2.png" alt="help2" border="0"></a>
+<a href="https://ibb.co/r0SxRYf"><img src="https://i.ibb.co/r0SxRYf/help3.png" alt="help3" border="0"></a>
+<a href="https://ibb.co/s2SGFFt"><img src="https://i.ibb.co/s2SGFFt/help4.png" alt="help4" border="0"></a>
+<a href="https://ibb.co/wwXt8jq"><img src="https://i.ibb.co/wwXt8jq/help5.png" alt="help5" border="0"></a>
+<a href="https://ibb.co/c18Qq7R"><img src="https://i.ibb.co/c18Qq7R/help6.png" alt="help6" border="0"></a>
+<a href="https://ibb.co/VQq4T8R"><img src="https://i.ibb.co/VQq4T8R/help7.png" alt="help7" border="0"></a>
