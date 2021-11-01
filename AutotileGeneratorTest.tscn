@@ -23,13 +23,13 @@ __meta__ = {
 script = ExtResource( 1 )
 
 [node name="dirt" type="Sprite" parent="AutotileGenerator"]
-position = Vector2( 183, 219 )
+position = Vector2( 40, 8 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 80, 16 )
 
 [node name="road" type="Sprite" parent="AutotileGenerator"]
-position = Vector2( 183.707, 233.849 )
+position = Vector2( 40, 24 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 16, 80, 16 )

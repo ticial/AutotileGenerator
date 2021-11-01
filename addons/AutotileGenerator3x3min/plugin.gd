@@ -1,7 +1,7 @@
 tool
 extends EditorPlugin
 
-var icon = load("res://addons/AutotileGenerator3x3min/icon.png")
+var icon = preload("./icon.png")
 
 var edi
 var interface
