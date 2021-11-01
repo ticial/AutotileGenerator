@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "AutotileGenerator",
 "language": "GDScript",
 "path": "res://addons/AutotileGenerator3x3min/AutotileGenerator.gd"
-}, {
-"base": "Node2D",
-"class": "AutotileGenerator1",
-"language": "GDScript",
-"path": "res://addons/AutotileGenerator3x3min/AutotileGenerator1.gd"
 } ]
 _global_script_class_icons={
-"AutotileGenerator": "",
-"AutotileGenerator1": ""
+"AutotileGenerator": ""
 }
 
 [application]

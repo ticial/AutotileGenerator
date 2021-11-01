@@ -140,31 +140,31 @@ var _tiles_data = {
 		TileSet.BIND_TOPLEFT + TileSet.BIND_LEFT + TileSet.BIND_TOP + TileSet.BIND_CENTER],
 }
 
-var sprites = []
-var tileset_image_offsets = []
+var _sprites = []
+var _texture_offsets = []
+
 
 func create_tileset_texture(image_path:String = '') -> Texture:
 	if !get_children():
 		return null
 	
 	var texture_size = Vector2()
-	var texture_offset = Vector2()
 	
 	for node in get_children():
 		if node is Sprite:
-			sprites.append(node)
-			tileset_image_offsets.append(Vector2(0,texture_size.y))
+			_sprites.append(node)
+			_texture_offsets.append(Vector2(0,texture_size.y))
 			var tile_size = node.region_rect.size.y
-			var output_tex_width = tile_size * 12
-			if output_tex_width > texture_size.x:
-				texture_size.x = output_tex_width
+			var texture_width = tile_size * 12
+			if texture_width > texture_size.x:
+				texture_size.x = texture_width
 			texture_size.y += tile_size * 4
 	
 	var tileset_image := Image.new()
 	tileset_image.create(texture_size.x, texture_size.y, false, Image.FORMAT_RGBA8)
 	
-	for i in range(sprites.size()):
-		blit_tileset_image(sprites[i], tileset_image, tileset_image_offsets[i])
+	for i in range(_sprites.size()):
+		_blit_tileset_image(_sprites[i], tileset_image, _texture_offsets[i])
 	
 	var tileset_texture:Texture
 	
@@ -180,12 +180,13 @@ func create_tileset_texture(image_path:String = '') -> Texture:
 
 
 func fill_tileset(tile_set:TileSet, tileset_texture:Texture = create_tileset_texture()) -> TileSet:
-	for i in range(sprites.size()):
-		create_autotile(tile_set, sprites[i].name, tileset_texture, tileset_image_offsets[i])
+	for i in range(_sprites.size()):
+		_create_autotile(tile_set, _sprites[i].name, tileset_texture, _texture_offsets[i])
 		
 	return tile_set
 
-func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset:Vector2):
+
+func _blit_tileset_image(sprite:Sprite, tileset_image:Image, texture_offset:Vector2):
 	var tiles: Image = sprite.texture.get_data()
 	
 	var tile_size = sprite.region_rect.size.x / 5
@@ -193,7 +194,7 @@ func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset
 	var rect_size = Vector2(tile_size/2,tile_size/2)
 	
 	for i in range(_tiles_data.size()):
-		var dest = _tiles_data.keys()[i] * tile_size + tileset_image_offset
+		var dest = _tiles_data.keys()[i] * tile_size + texture_offset
 		var data = _tiles_data.values()[i]
 		for j in range(4):
 			var src = data[j]
@@ -202,12 +203,12 @@ func blit_tileset_image(sprite:Sprite, tileset_image:Image, tileset_image_offset
 			tileset_image.blit_rect(tiles, src, dest + corners[j] * tile_size)
 
 	
-func create_autotile(tile_set:TileSet,tile_name:String, texture:Texture, texture_offset:Vector2) -> void:
+func _create_autotile(tile_set:TileSet,tile_name:String, texture:Texture, texture_offset:Vector2) -> void:
 	var id = tile_set.find_tile_by_name(tile_name)
 	if id < 0:
 		id = tile_set.get_last_unused_tile_id()
 		tile_set.create_tile(id)
-	var tile_size: int = texture.get_width() / 12
+	var tile_size = texture.get_width() / 12
 	tile_set.tile_set_name(id, tile_name)
 	tile_set.tile_set_texture(id, texture)
 	tile_set.tile_set_region(id, Rect2(texture_offset.x, texture_offset.y, tile_size * 12, tile_size * 4))
