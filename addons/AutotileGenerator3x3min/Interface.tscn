@@ -37,6 +37,7 @@ margin_left = 79.0
 margin_right = 1004.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+text = "tileset.tres"
 
 [node name="Folder" type="TextureButton" parent="VBox/OutputTileSet"]
 margin_left = 1008.0
@@ -60,6 +61,7 @@ margin_left = 76.0
 margin_right = 1004.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+text = "tileset.png"
 
 [node name="Folder" type="TextureButton" parent="VBox/OutputImage"]
 margin_left = 1008.0

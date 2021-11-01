@@ -1,10 +1,13 @@
 tool
 extends Control
 
+signal file_created
+
 var _which_folder = "input"
 var generator
 var plugin
-var dialog
+var dialog:FileDialog
+var timer:Timer
 
 func _ready():
 	dialog = FileDialog.new()
@@ -12,16 +15,13 @@ func _ready():
 	dialog.window_title = "Select a Path"
 	add_child(dialog)
 	dialog.connect("file_selected", self, "_on_file_selected")
+	timer = Timer.new()
+	add_child(timer)
 
 
-func setup(_generator, _plugin):
+func setup(_generator):
 	generator = _generator
-	plugin = _plugin
-#	if generator.is_connected("saved_image",self,"scan_filesystem")
-
-
-func scan_filesystem():
-	plugin.get_editor_interface().get_resource_filesystem().scan()
+	
 
 func _on_Folder_pressed(which: String) -> void:
 	_which_folder = which
@@ -46,7 +46,7 @@ func _on_file_selected(file: String) -> void:
 
 func _on_GenImage_pressed():
 	generator.create_tileset_texture($VBox/OutputImage/LineEdit.text)
-	scan_filesystem()
+	emit_signal("file_created")
 
 
 func _on_GenTileSet_pressed():
@@ -60,11 +60,14 @@ func _on_GenTileSet_pressed():
 		tile_set = TileSet.new()
 	if !ResourceLoader.exists(image_path):
 		texture = generator.create_tileset_texture(image_path)
-		scan_filesystem()
-		return
+		emit_signal("file_created")
+		timer.start(1)
+		yield(timer, "timeout")
+		
 	texture = ResourceLoader.load(image_path)
 	
 	generator.fill_tileset(tile_set, texture)
+	
 	ResourceSaver.save(tile_set_path,tile_set)
 	print("saved tileset: ",tile_set_path)
-	scan_filesystem()
+	emit_signal("file_created")
