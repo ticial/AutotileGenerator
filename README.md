@@ -2,6 +2,7 @@
 Generate autotiles 3x3 min from sprites whith 5 tiles, and add to tileset. Based on https://github.com/ShatReal/3x3-min-gen
 
 The autotile name defines the name of the sprite from which it was created.
+
 You can add autotiles to an existing tileset. Old tiles can be replaced with new autotiles if they have the same name.
 
 <a href="https://ibb.co/jgh18CD"><img src="https://i.ibb.co/vZ1KcNk/help1.png" alt="help1" border="0"></a>
