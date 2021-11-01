@@ -187,8 +187,7 @@ func fill_tileset(tile_set:TileSet, tileset_texture:Texture = create_tileset_tex
 
 
 func _blit_tileset_image(sprite:Sprite, tileset_image:Image, texture_offset:Vector2):
-	var tiles: Image = sprite.texture.get_data()
-	
+	var sprite_image: Image = sprite.texture.get_data()
 	var tile_size = sprite.region_rect.size.x / 5
 	var region_tex_offset = sprite.region_rect.position
 	var rect_size = Vector2(tile_size/2,tile_size/2)
@@ -200,7 +199,7 @@ func _blit_tileset_image(sprite:Sprite, tileset_image:Image, texture_offset:Vect
 			var src = data[j]
 			src.position = src.position * tile_size + region_tex_offset
 			src.size = rect_size
-			tileset_image.blit_rect(tiles, src, dest + corners[j] * tile_size)
+			tileset_image.blit_rect(sprite_image, src, dest + corners[j] * tile_size)
 
 	
 func _create_autotile(tile_set:TileSet,tile_name:String, texture:Texture, texture_offset:Vector2) -> void:
