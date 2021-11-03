@@ -32,10 +32,3 @@ func _unhandled_input(event):
 func set_brush(id):
 	brush = id
 
-
-func _on_TextureButton1_pressed():
-	brush = 0
-
-
-func _on_TextureButton2_pressed():
-	brush = 1
