@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="AutotileGenerator"
-run/main_scene="res://AutotileGeneratorTest.tscn"
+run/main_scene="res://addons/AutotileGenerator3x3min/AutotileGeneratorTest.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]

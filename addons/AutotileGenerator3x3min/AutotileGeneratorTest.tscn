@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/AutotileGenerator3x3min/AutotileGenerator.gd" type="Script" id=1]
-[ext_resource path="res://AutotileGeneratorTest.gd" type="Script" id=2]
-[ext_resource path="res://input.png" type="Texture" id=3]
+[ext_resource path="res://addons/AutotileGenerator3x3min/AutotileGeneratorTest.gd" type="Script" id=2]
+[ext_resource path="res://addons/AutotileGenerator3x3min/input.png" type="Texture" id=3]
 
 [node name="AutotileGeneratorTest" type="Node2D"]
 script = ExtResource( 2 )
