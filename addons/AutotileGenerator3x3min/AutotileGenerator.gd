@@ -148,6 +148,9 @@ func create_tileset_texture(image_path:String = '') -> Texture:
 	if !get_children():
 		return null
 	
+	_sprites.clear()
+	_texture_offsets.clear()
+	
 	var texture_size = Vector2()
 	
 	for node in get_children():
