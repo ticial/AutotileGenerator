@@ -154,6 +154,9 @@ func create_tileset_texture(image_path:String = '') -> Texture:
 		if node is Sprite:
 			_sprites.append(node)
 			_texture_offsets.append(Vector2(0,texture_size.y))
+			if !node.region_enabled:
+				node.region_enabled = true
+				node.region_rect.size = node.texture.get_size()
 			var tile_size = node.region_rect.size.y
 			var texture_width = tile_size * 12
 			if texture_width > texture_size.x:
