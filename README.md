@@ -1,8 +1,6 @@
 # AutotileGenerator
-Generate autotiles 2x2/3x3min from sprites whith 5 tiles or 3x3 from 8 tiles, and add to tileset. 
-
-The autotile name defines the name of the sprite from which it was created.
-
+Generate autotiles 2x2/3x3min from sprites whith 5 tiles or 3x3 from 8 tiles, and add to tileset.</n>
+The autotile name defines the name of the sprite from which it was created.</n>
 You can add autotiles to an existing tileset. Old tiles can be replaced with new autotiles if they have the same name.
 
 <details>
@@ -32,14 +30,14 @@ Update v0.9:
 2. Added generator 2x2 autotiles from 5 tiles (2 variants):
   </summary>
 
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/x1T4N7R/image.png" alt="image" border="0"></a>
-Source
+Source <br>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/x1T4N7R/image.png" alt="image" border="0"></a>
 
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/NNXBfnc/image.png" alt="image" border="0"></a>
-Variant 1
+Variant 1 <br>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/NNXBfnc/image.png" alt="image" border="0"></a>
 
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/7YvpVY2/image.png" alt="image" border="0"></a>
-Variant 2
+Variant 2 <br>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/7YvpVY2/image.png" alt="image" border="0"></a>
 </details>
 
 
@@ -49,22 +47,24 @@ Variant 2
   </summary>
 (To display tiles correctly, you need to reduce the cell_size in the TimeMap by 2 times)
 
+Source <br>
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/p0fCPNb/image.png" alt="image" border="0"></a>
-Source
 
+Result <br>
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/kyyYHr3/image.png" alt="image" border="0"></a>
-Result
 </details>
 
 
 <details>
   <summary>
-4. Added the ability to copy collisions from a sprite to an autotile:
+4. Added the ability to copy collisions from a sprite to an autotile (experimental):
   </summary>
+Turn on "Copy Collision"<br>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/q7qYM1G/image.png" alt="image" border="0"></a>
 
-<a href="https://ibb.co/ZYqbJjm"><img src="https://i.ibb.co/P9qVYLQ/image.png" alt="image" border="0"></a>
-Source
+Source <br>
+  <a href="https://ibb.co/ZYqbJjm"><img src="https://i.ibb.co/P9qVYLQ/image.png" alt="image" border="0"></a>
 
-<a href="https://ibb.co/8sR1Mbm"><img src="https://i.ibb.co/dM38Btf/image.png" alt="image" border="0"></a>
-Result
+Result <br>
+  <a href="https://ibb.co/8sR1Mbm"><img src="https://i.ibb.co/dM38Btf/image.png" alt="image" border="0"></a>
 </details>
