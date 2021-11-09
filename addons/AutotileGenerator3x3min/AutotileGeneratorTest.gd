@@ -15,16 +15,18 @@ func _ready():
 		button.icon.atlas = tile_set.tile_get_texture(id)
 		button.icon.region = Rect2(tile_set.tile_get_region(id).position,tile_set.autotile_get_size(id))
 		button.connect("pressed",self,"set_brush",[id])
+	for point in $TileMap.get_used_cells():
+		$TileMap.update_bitmask_area(point)
 
 
 func _unhandled_input(event):
 	if Input.is_action_pressed("mouse_left"):
-		var mouse_point = $TileMap.world_to_map(get_global_mouse_position())
+		var mouse_point = $TileMap.world_to_map(get_global_mouse_position()-$TileMap.cell_size/2)
 		$TileMap.set_cellv(mouse_point,brush)
 		$TileMap.update_bitmask_area(mouse_point)
 	
 	if Input.is_action_pressed("mouse_right"):
-		var mouse_point = $TileMap.world_to_map(get_global_mouse_position())
+		var mouse_point = $TileMap.world_to_map(get_global_mouse_position()-$TileMap.cell_size/2)
 		$TileMap.set_cellv(mouse_point,-1)
 		$TileMap.update_bitmask_area(mouse_point)
 
