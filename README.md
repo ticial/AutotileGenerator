@@ -1,7 +1,13 @@
 # AutotileGenerator
-Generate autotiles 2x2/3x3min from sprites whith 5 tiles or 3x3 from 8 tiles, and add to tileset.</n>
-The autotile name defines the name of the sprite from which it was created.</n>
+Generate autotiles 2x2/3x3min from sprites whith 5 tiles or 3x3 from 8 tiles, and add to tileset.<br>
+The autotile name defines the name of the sprite from which it was created.<br>
 You can add autotiles to an existing tileset. Old tiles can be replaced with new autotiles if they have the same name.
+
+Source <br>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/wrbf003/image.png" alt="image" border="0"></a>
+  
+Result <br>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/mq4BBfc/image.png" alt="image" border="0"></a>
 
 <details>
   <summary>
@@ -45,7 +51,7 @@ Variant 2 <br>
   <summary>
 3. Added generator 3x3 autotiles from 8 tiles:
   </summary>
-(To display tiles correctly, you need to reduce the cell_size in the TimeMap by 2 times)
+(For the correct display of tiles, the cell size in the TileMap must be 2 times smaller than the tile size)
 
 Source <br>
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/p0fCPNb/image.png" alt="image" border="0"></a>
