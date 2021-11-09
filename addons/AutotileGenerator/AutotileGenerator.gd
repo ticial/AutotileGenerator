@@ -31,7 +31,6 @@ var _src_tiles_count = 5
 var _dest_tiles_x = 12
 var _dest_tiles_y = 4
 var _tiles_data = {}
-var _corners = corners
 
 var _sprites = []
 var _texture_offsets = []
@@ -42,7 +41,6 @@ func setup_3x3() -> void:
 	_src_tiles_count = 9
 	_dest_tiles_x = 16
 	_dest_tiles_y = 16
-	_corners = corners
 	_tiles_data.clear()
 	
 	var corner_bits = [1,64,4,256]
@@ -61,17 +59,17 @@ func setup_3x3() -> void:
 		var bits = i
 		var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 		for corner in range(4):
-			data[corner] = _corners[corner]
+			data[corner] = corners[corner]
 			if (i & corner_bits[corner]) != 0:
-				if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: data[corner].x += 4
-				elif (i & corner_bits_x[corner]) != 0: data[corner].x += 7
-				elif (i & corner_bits_y[corner]) != 0: data[corner].x += 8
-				else: data[corner].x += 6
+				if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: data[corner].x += 3
+				elif (i & corner_bits_x[corner]) != 0: data[corner].x += 6
+				elif (i & corner_bits_y[corner]) != 0: data[corner].x += 7
+				else: data[corner].x += 5
 			else:
-				if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: data[corner].x += 4 
+				if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: data[corner].x += 3 
 				elif (i & corner_bits_x[corner]) != 0: data[corner].x += 1
 				elif (i & corner_bits_y[corner]) != 0: data[corner].x += 2
-				elif (i & corner_bits_xx[corner]) != 0 or (i & corner_bits_yy[corner]) != 0: data[corner].x += 5
+				elif (i & corner_bits_xx[corner]) != 0 or (i & corner_bits_yy[corner]) != 0: data[corner].x += 4
 				else: data[corner].x += 0
 		_tiles_data[point] = data
 		
@@ -86,7 +84,6 @@ func setup_3x3_min(minimal = true) -> void:
 	_src_tiles_count = 5
 	_dest_tiles_x = 12
 	_dest_tiles_y = 4
-	_corners = corners
 	_tiles_data.clear()
 	
 	var corner_bits = [1,64,4,256]
@@ -109,7 +106,7 @@ func setup_3x3_min(minimal = true) -> void:
 		var bits = i
 		var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 		for corner in range(4):
-			data[corner] = _corners[corner]
+			data[corner] = corners[corner]
 			if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: 
 				if (i & corner_bits[corner]) != 0: data[corner].x += 4
 				else: data[corner].x += 3 
@@ -128,7 +125,6 @@ func setup_2x2_1() -> void:
 	_src_tiles_count = 5
 	_dest_tiles_x = 4
 	_dest_tiles_y = 4
-	_corners = conter_corners
 	_tiles_data.clear()
 	
 	var corner_bits = [1,64,4,256]
@@ -150,7 +146,7 @@ func setup_2x2_1() -> void:
 			
 			var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 			for corner in range(4):
-				data[corner] = _corners[corner]
+				data[corner] = conter_corners[corner]
 				if (bits & corner_bits[corner]) != 0:  
 					if (bits & corner_bits_x[corner]) != 0 and (bits & corner_bits_y[corner]) != 0:
 						if (bits & corner_bits_xy[corner]) != 0:  data[corner].x += 4
@@ -165,7 +161,6 @@ func setup_2x2_2() -> void:
 	_src_tiles_count = 5
 	_dest_tiles_x = 4
 	_dest_tiles_y = 4
-	_corners = corners
 	_tiles_data.clear()
 	
 	var corner_bits = [1,64,4,256]
@@ -187,7 +182,7 @@ func setup_2x2_2() -> void:
 			
 			var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 			for corner in range(4):
-				data[corner] = _corners[corner]
+				data[corner] = corners[corner]
 				if (bits & corner_bits[corner]) != 0: data[corner].x += 4
 				elif (bits & corner_bits_x[corner]) != 0 and (bits & corner_bits_y[corner]) != 0: data[corner].x += 3
 				elif (bits & corner_bits_y[corner]) != 0: data[corner].x += 2
@@ -203,32 +198,24 @@ func create_tileset_texture(image_path:String = '') -> Texture:
 	_sprites.clear()
 	_texture_offsets.clear()
 	
-<<<<<<< HEAD
 	match autotile_mode:
 		MODE.BITMASK_2X2_1: setup_2x2_1()
 		MODE.BITMASK_2X2_2: setup_2x2_2()
 		MODE.BITMASK_3X3: setup_3x3()
 		MODE.BITMASK_3X3_MINIMAL: setup_3x3_min()
 	
-=======
->>>>>>> b88c2898ef5931508e233f8a2ab2e78e625917d3
 	var texture_size = Vector2()
 	
 	for node in get_children():
 		if node.visible and node is Sprite:
 			_sprites.append(node)
 			_texture_offsets.append(Vector2(0,texture_size.y))
-<<<<<<< HEAD
 			if tile_size == Vector2.ZERO:
 				tile_size = Vector2(node.region_rect.size.y,node.region_rect.size.y)
 			var texture_width = tile_size.x * _dest_tiles_x
-=======
 			if !node.region_enabled:
 				node.region_enabled = true
 				node.region_rect.size = node.texture.get_size()
-			var tile_size = node.region_rect.size.y
-			var texture_width = tile_size * 12
->>>>>>> b88c2898ef5931508e233f8a2ab2e78e625917d3
 			if texture_width > texture_size.x:
 				texture_size.x = texture_width
 			texture_size.y += tile_size.y * _dest_tiles_y
@@ -283,20 +270,20 @@ func _blit_shapes(sprite:Sprite) -> Dictionary:
 		if node is Area2D:
 			for n in node.get_children():
 				if n is CollisionPolygon2D:
-					var shape_position = n.position + node.position + sprite_topleft
-					var point = ((shape_position + n.polygon[0]) / tile_size * 2).floor() / 2
+					var shape_position = n.position.round() + node.position.round() + sprite_topleft.round()
+					var point = ((shape_position + n.polygon[0].round()) / tile_size * 2).floor() / 2
 					var fix_position = shape_position - point.floor() * tile_size 
 					if autotile_mode == MODE.BITMASK_2X2_1:
 						var corner = point - point.floor()
 						var conter_corner = Vector2(0 if corner.x > 0 else 0.5, 0 if corner.y > 0 else 0.5)
 						fix_position += (conter_corner - corner) * tile_size
 #						prints(conter_corner, corner, (conter_corner - corner))
-#					print(shape_position, point, fix_position)
+#					print(point)
 					var shape = ConvexPolygonShape2D.new()
 					shape.points = n.polygon
 #					print(shape.points)
 					for i in range(shape.points.size()):
-						shape.points[i] += fix_position
+						shape.points[i] = shape.points[i].round() + fix_position.round()
 #					print(shape.points)
 					sprite_shapes[point] = shape
 	return sprite_shapes
