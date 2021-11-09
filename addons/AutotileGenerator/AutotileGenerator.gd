@@ -203,21 +203,32 @@ func create_tileset_texture(image_path:String = '') -> Texture:
 	_sprites.clear()
 	_texture_offsets.clear()
 	
+<<<<<<< HEAD
 	match autotile_mode:
 		MODE.BITMASK_2X2_1: setup_2x2_1()
 		MODE.BITMASK_2X2_2: setup_2x2_2()
 		MODE.BITMASK_3X3: setup_3x3()
 		MODE.BITMASK_3X3_MINIMAL: setup_3x3_min()
 	
+=======
+>>>>>>> b88c2898ef5931508e233f8a2ab2e78e625917d3
 	var texture_size = Vector2()
 	
 	for node in get_children():
 		if node.visible and node is Sprite:
 			_sprites.append(node)
 			_texture_offsets.append(Vector2(0,texture_size.y))
+<<<<<<< HEAD
 			if tile_size == Vector2.ZERO:
 				tile_size = Vector2(node.region_rect.size.y,node.region_rect.size.y)
 			var texture_width = tile_size.x * _dest_tiles_x
+=======
+			if !node.region_enabled:
+				node.region_enabled = true
+				node.region_rect.size = node.texture.get_size()
+			var tile_size = node.region_rect.size.y
+			var texture_width = tile_size * 12
+>>>>>>> b88c2898ef5931508e233f8a2ab2e78e625917d3
 			if texture_width > texture_size.x:
 				texture_size.x = texture_width
 			texture_size.y += tile_size.y * _dest_tiles_y
