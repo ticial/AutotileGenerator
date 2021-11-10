@@ -20,7 +20,7 @@ Source 8 tiles <br>
 
 Result <br>
   <a href="https://imgbb.com/"><img src="https://i.ibb.co/kyyYHr3/image.png" alt="image" border="0"></a> <br>
-For the correct display of 3x3 autotiles, the cell size in the TileMap must be 2 times smaller than the tile size <br>
+For correct display of 3x3 autotiles, cell size in TileMap must be 2 times smaller than tile size <br>
 
 
 <details>
