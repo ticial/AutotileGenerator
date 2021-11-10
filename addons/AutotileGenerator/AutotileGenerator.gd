@@ -14,7 +14,20 @@ const conter_corners = [
 	Vector2(0, 0.5),
 	Vector2(0, 0),
 ]
-
+const bits_3x3min = [
+	16, 48, 56, 24, 187, 440, 248, 190, 432, 506, 504, 216,
+	144, 176, 184, 152, 434, 510, 507, 218, 438, 254, -1, 251,
+	146, 178, 186, 154, 182, 447, 255, 155, 446, 511, 443, 219,
+	18, 50, 58, 26, 250, 62, 59, 442, 54, 63, 191, 27
+]
+const bits_2x2 = [
+	325, 320, 4, 256, 
+	260, 324, 261, 68, 
+	65, 321, 69, 1, 
+	-1, 64, 257, 4
+]
+	
+	
 enum MODE {
 	BITMASK_3X3
 	BITMASK_3X3_MINIMAL
@@ -52,24 +65,23 @@ func setup_3x3() -> void:
 	var x = 0
 	var y = 0
 	
-	for i in range(512):
-		if (i & 16) == 0: continue
+	for bits in range(512):
+		if (bits & 16) == 0: continue
 		
 		var point = Vector2(x,y)
-		var bits = i
 		var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 		for corner in range(4):
 			data[corner] = corners[corner]
-			if (i & corner_bits[corner]) != 0:
-				if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: data[corner].x += 3
-				elif (i & corner_bits_x[corner]) != 0: data[corner].x += 6
-				elif (i & corner_bits_y[corner]) != 0: data[corner].x += 7
+			if (bits & corner_bits[corner]) != 0:
+				if (bits & corner_bits_x[corner]) != 0 and (bits & corner_bits_y[corner]) != 0: data[corner].x += 3
+				elif (bits & corner_bits_x[corner]) != 0: data[corner].x += 6
+				elif (bits & corner_bits_y[corner]) != 0: data[corner].x += 7
 				else: data[corner].x += 5
 			else:
-				if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: data[corner].x += 3 
-				elif (i & corner_bits_x[corner]) != 0: data[corner].x += 1
-				elif (i & corner_bits_y[corner]) != 0: data[corner].x += 2
-				elif (i & corner_bits_xx[corner]) != 0 or (i & corner_bits_yy[corner]) != 0: data[corner].x += 4
+				if (bits & corner_bits_x[corner]) != 0 and (bits & corner_bits_y[corner]) != 0: data[corner].x += 3 
+				elif (bits & corner_bits_x[corner]) != 0: data[corner].x += 1
+				elif (bits & corner_bits_y[corner]) != 0: data[corner].x += 2
+				elif (bits & corner_bits_xx[corner]) != 0 or (bits & corner_bits_yy[corner]) != 0: data[corner].x += 4
 				else: data[corner].x += 0
 		_tiles_data[point] = data
 		
@@ -79,7 +91,7 @@ func setup_3x3() -> void:
 			y += 1
 
 
-func setup_3x3_min(minimal = true) -> void:
+func setup_3x3_min() -> void:
 	_autotile_mode = TileSet.BITMASK_3X3_MINIMAL
 	_src_tiles_count = 5
 	_dest_tiles_x = 12
@@ -95,24 +107,18 @@ func setup_3x3_min(minimal = true) -> void:
 	var x = 0
 	var y = 0
 	
-	for i in range(512):
-		if (i & 16) == 0: continue
-		if (i & 1) != 0 and (i & 2) + (i & 8) <= 8: continue
-		if (i & 4) != 0 and (i & 2) + (i & 32) <= 32: continue
-		if (i & 64) != 0 and (i & 128) + (i & 8) <= 128: continue
-		if (i & 256) != 0 and (i & 128) + (i & 32) <= 128: continue
-			
-		var point = Vector2(x,y)
-		var bits = i
-		var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
-		for corner in range(4):
-			data[corner] = corners[corner]
-			if (i & corner_bits_x[corner]) != 0 and (i & corner_bits_y[corner]) != 0: 
-				if (i & corner_bits[corner]) != 0: data[corner].x += 4
-				else: data[corner].x += 3 
-			elif (i & corner_bits_x[corner]) != 0: data[corner].x += 1
-			elif (i & corner_bits_y[corner]) != 0: data[corner].x += 2
-		_tiles_data[point] = data
+	for bits in bits_3x3min:
+		if bits > 0: 
+			var point = Vector2(x,y)
+			var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
+			for corner in range(4):
+				data[corner] = corners[corner]
+				if (bits & corner_bits_x[corner]) != 0 and (bits & corner_bits_y[corner]) != 0: 
+					if (bits & corner_bits[corner]) != 0: data[corner].x += 4
+					else: data[corner].x += 3 
+				elif (bits & corner_bits_x[corner]) != 0: data[corner].x += 1
+				elif (bits & corner_bits_y[corner]) != 0: data[corner].x += 2
+			_tiles_data[point] = data
 		
 		x += 1
 		if x >= _dest_tiles_x:
@@ -131,19 +137,14 @@ func setup_2x2_1() -> void:
 	var corner_bits_x = [4,256,1,64]
 	var corner_bits_y = [64,1,256,4]
 	var corner_bits_xy = [256,4,64,1]
-		
-	var i
-	var bits = 0
+	
 	for x in range(4):
 		for y in range(4):
-			var point = Vector2(x,y)
-			i = x * 4 + y
-			bits = 0
-			if (i & 1) == 0: bits += 1
-			if (i & 2) == 0: bits += 4
-			if (i & 4) == 0: bits += 64
-			if (i & 8) == 0: bits += 256
+			var bits = bits_2x2[x * 4 + y]
 			
+			if bits < 0: continue
+			
+			var point = Vector2(x,y)
 			var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 			for corner in range(4):
 				data[corner] = conter_corners[corner]
@@ -156,6 +157,7 @@ func setup_2x2_1() -> void:
 				else: data[corner].x += -1
 			_tiles_data[point] = data
 
+
 func setup_2x2_2() -> void:
 	_autotile_mode = TileSet.BITMASK_2X2
 	_src_tiles_count = 5
@@ -167,19 +169,14 @@ func setup_2x2_2() -> void:
 	var corner_bits_x = [4,256,1,64]
 	var corner_bits_y = [64,1,256,4]
 	var corner_bits_xy = [256,4,64,1]
-		
-	var i
-	var bits = 0
+	
 	for x in range(4):
 		for y in range(4):
-			var point = Vector2(x,y)
-			i = x * 4 + y
-			bits = 0
-			if (i & 1) != 0: bits += 1
-			if (i & 2) != 0: bits += 4
-			if (i & 4) != 0: bits += 64
-			if (i & 8) != 0: bits += 256
+			var bits = bits_2x2[x * 4 + y]
 			
+			if bits < 0: continue
+			
+			var point = Vector2(x,y)
 			var data = [Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,bits]
 			for corner in range(4):
 				data[corner] = corners[corner]
